@@ -9,7 +9,7 @@ type Props = {
 }
 
 const Chat = (props: Props) => {
-  const socket = useMemo<any>(() => io('http://localhost:3000'), []);
+  const socket = useMemo<any>(() => io('http://localhost:3000', { transports: ['websockets'] }), []);
 
   useEffect(() => {
     socket.on('connect', () => {
