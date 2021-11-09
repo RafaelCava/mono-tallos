@@ -1,8 +1,18 @@
 import React from 'react';
 
-const Chat = () => (
+type Props = {
+  id: string;
+  name: string;
+}
+
+const Chat = (props: Props) => (
   <div>
-    <h1>Chat</h1>
+    <h1>
+      Chat
+      {' '}
+      {props.name}
+      {props.id}
+    </h1>
   </div>
 );
 
