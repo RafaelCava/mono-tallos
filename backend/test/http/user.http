@@ -1,0 +1,15 @@
+GET http://localhost:3000/users/
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRm9ybWF0ZWQiOnsiaWQiOjYsIm5hbWUiOiJ0ZXN0ZSIsImdyb3Vwc19jcmVhdGVfbW91bnQiOjAsImNyZWF0ZWRfYXQiOiIyMDIxLTExLTA3VDIyOjAyOjA3LjY4MVoifSwiaWF0IjoxNjM2MzIyNTQwLCJleHAiOjE2MzYzNTEzNDB9.z0bHgXDBQWV4rNIKW6DNhEaxZDg8Cfx33Ewfg8IvHsM
+
+###
+POST http://localhost:3000/users/
+Content-Type: application/json
+
+{
+    "email": "rafael@rafael.com",
+    "name": "teste",
+    "senha": "teste"
+}
+###
+DELETE http://localhost:3000/users/
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRm9ybWF0ZWQiOnsiaWQiOjMsIm5hbWUiOiJ0ZXN0ZSIsImdyb3Vwc19jcmVhdGVfbW91bnQiOjAsImNyZWF0ZWRfYXQiOiIyMDIxLTExLTA3VDAyOjUyOjAwLjc2NFoifSwiaWF0IjoxNjM2MjUzNTI3LCJleHAiOjE2MzYyODIzMjd9.YYQuRffKVYqYC8dx-lc_Npso4OU50e4P5lA99L5_W4U

@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+
+  app:
+    build: .
+    entrypoint: sh ./.docker/entrypoint.sh
+    container_name: nest-api
+    ports:
+      - 3000:3000 
+    volumes:
+      - .:/home/node/app
+  
+  db:
+    build: .docker/postgres
+    container_name: db_banco
+    restart: always
+    # volumes:
+    #   - ./.docker/dbdata:/var/lib/postgresql/data
+    tty: true
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=nest_api
+    
+  pgadmin:
+    image: dpage/pgadmin4
+    tty: true
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@user.com
+      - PGADMIN_DEFAULT_PASSWORD=123456
+    ports:
+      - "9000:80"
+    depends_on:
+      - db

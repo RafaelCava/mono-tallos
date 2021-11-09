@@ -1,0 +1,11 @@
+GET http://localhost:3000/messages/4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRm9ybWF0ZWQiOnsiaWQiOjQsIm5hbWUiOiJ0ZXN0ZSIsImdyb3Vwc19jcmVhdGVfbW91bnQiOjAsImNyZWF0ZWRfYXQiOiIyMDIxLTExLTA3VDAzOjM2OjQ1LjQ2NVoifSwiaWF0IjoxNjM2Mjg1ODAxLCJleHAiOjE2MzYzMTQ2MDF9.NMCi4b7vLw7yokzLxL0rTP7XF4-rI3kopfekBFlO6FI
+
+###
+POST http://localhost:3000/messages/4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRm9ybWF0ZWQiOnsiaWQiOjMsIm5hbWUiOiJ0ZXN0ZSIsImdyb3Vwc19jcmVhdGVfbW91bnQiOjAsImNyZWF0ZWRfYXQiOiIyMDIxLTExLTA3VDAyOjUyOjAwLjc2NFoifSwiaWF0IjoxNjM2Mjg1ODMzLCJleHAiOjE2MzYzMTQ2MzN9.rLjRXWYWor-3F0pFctJqFPjNxyZQsmMxhRVcT6v3VDk
+Content-Type: application/json
+
+{
+  "message": "teste ola time"
+}
