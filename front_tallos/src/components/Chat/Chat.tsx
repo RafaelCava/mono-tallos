@@ -5,11 +5,13 @@ import io from 'socket.io-client';
 import { PropsChat } from '../../interfaces/interfaces';
 
 const Chat = (props: PropsChat) => {
-  const socket = useMemo(() => io('http://localhost:3000', { transports: ['websockets'] }), []);
+  const socket = useMemo(() => io('http://localhost:3000', { transports: ['websocket'] }), []);
 
   useEffect(() => {
     socket.on('connect', () => {
-      console.log('abriu sessão');
+      console.log('abriu a sessão');
+
+      socket.on('receive-message', (data: { message: string }) => console.log(data));
     });
   }, [socket]);
 
