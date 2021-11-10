@@ -5,11 +5,8 @@ import axios from 'axios';
 import React, {
   MutableRefObject, useEffect, useRef, useState,
 } from 'react';
-
-interface GroupsModel{
-  id: string
-  name: string
-}
+import { useHistory } from 'react-router-dom';
+import { GroupsModel } from '../../interfaces/interfaces';
 
 const Groups = () => {
   const [groups, setGroups] = useState<GroupsModel[]>([]);
@@ -24,8 +21,11 @@ const Groups = () => {
     }).then((response) => { setGroups(response.data); });
   }, []);
 
+  const history = useHistory();
+
   const toChat = (groupId: string) => {
-    console.log(groupId, inpuRef.current.value);
+    const name = inpuRef.current.value;
+    history.push(`/chat?group_id=${groupId}&name=${name}`);
   };
 
   return (

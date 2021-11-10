@@ -2,14 +2,10 @@ import React, {
   MutableRefObject, useEffect, useMemo, useRef,
 } from 'react';
 import io from 'socket.io-client';
+import { PropsChat } from '../../interfaces/interfaces';
 
-type Props = {
-  id: string;
-  name: string;
-}
-
-const Chat = (props: Props) => {
-  const socket = useMemo<any>(() => io('http://localhost:3000', { transports: ['websockets'] }), []);
+const Chat = (props: PropsChat) => {
+  const socket = useMemo(() => io('http://localhost:3000', { transports: ['websockets'] }), []);
 
   useEffect(() => {
     socket.on('connect', () => {
