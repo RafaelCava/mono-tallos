@@ -13,6 +13,11 @@ const Chat = (props: PropsChat) => {
     });
   }, [socket]);
 
+  const sendMessage = () => {
+    const message = inpuRef.current.value;
+    socket.emit('send-message', { message });
+  };
+
   const inpuRef = useRef() as MutableRefObject<any>;
 
   return (
@@ -26,7 +31,7 @@ const Chat = (props: PropsChat) => {
       <p>
         <label htmlFor="message">Message:</label>
         <input type="text" id="message" ref={inpuRef} />
-        <button type="button">Enviar</button>
+        <button type="button" onClick={() => sendMessage()}>Enviar</button>
       </p>
     </div>
   );
