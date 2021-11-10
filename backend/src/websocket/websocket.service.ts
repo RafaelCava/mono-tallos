@@ -1,4 +1,5 @@
 import {
+  ConnectedSocket,
   MessageBody,
   OnGatewayConnection,
   SubscribeMessage,
@@ -17,7 +18,10 @@ export class WebsocketService implements OnGatewayConnection {
   }
 
   @SubscribeMessage('send-message')
-  sendMessage(@MessageBody() body: any) {
+  sendMessage(
+    @ConnectedSocket() client: Socket,
+    @MessageBody() body: { message: string },
+  ): void {
     console.log(body);
   }
 }
