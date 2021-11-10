@@ -13,8 +13,12 @@ export class WebsocketService implements OnGatewayConnection {
   @WebSocketServer()
   private server: Server;
 
+  private users = {};
+
   handleConnection(client: Socket, ...args: any[]) {
-    console.log(client.id);
+    const { name, group_id } = client.handshake.query;
+    this.users[client.id] = { name, group_id };
+    console.log(this.users);
   }
 
   @SubscribeMessage('send-message')
@@ -22,6 +26,8 @@ export class WebsocketService implements OnGatewayConnection {
     @ConnectedSocket() client: Socket,
     @MessageBody() body: { message: string },
   ): void {
+    const name = this.users[client.id];
+    client.broadcast.emit('receive-message', { ...body, name });
     console.log(body);
   }
 }
