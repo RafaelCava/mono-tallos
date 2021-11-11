@@ -21,9 +21,7 @@ jobs:
       - name: Install depencies
         uses: borales/actions-yarn@v2.3.0
         with: 
-          cmd: |
-            cd /backend
-            install
+          cmd: install -t /backend
       
       - name: Build project
         uses: borales/actions-yarn@v2.3.0
