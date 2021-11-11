@@ -6,21 +6,17 @@ jobs:
   code:
     name: Test code
     runs-on: ubuntu-latest
-
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-
       - name: Set up Node
         uses: actions/setup-node@v2
         with:
           node-version: 14
-
        - uses: borales/actions-yarn
         with:
           cmd: install 
@@ -30,10 +26,8 @@ jobs:
       - uses: borales/actions-yarn
         with:
           cmd: test 
-
       - name: Run Jest
         run: yarn test --coverage
-
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
