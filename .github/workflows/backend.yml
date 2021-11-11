@@ -27,5 +27,5 @@ jobs:
       - name: Build project 
         run: yarn build
 
-      - name: Build project 
+      - name: Verify Lint
         run: yarn lint
