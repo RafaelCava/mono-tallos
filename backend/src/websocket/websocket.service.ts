@@ -26,7 +26,7 @@ export class WebsocketService implements OnGatewayConnection {
     @ConnectedSocket() client: Socket,
     @MessageBody() body: { message: string },
   ): void {
-    const name = this.users[client.id];
+    const {name} = this.users[client.id];
     client.broadcast.emit('receive-message', { ...body, name });
     console.log(body);
   }
