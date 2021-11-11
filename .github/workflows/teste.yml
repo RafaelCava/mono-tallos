@@ -15,35 +15,16 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-<<<<<<< HEAD
-=======
-
->>>>>>> 64b7590212d721e7efa4b210f932f593e9b5b40d
       - name: Set up Node
         uses: actions/setup-node@v1
         with:
           node-version: 14
-<<<<<<< HEAD
         - uses: borales/actions-yarn@v2.3.0
         with:
           cmd: install
       - uses: borales/actions-yarn@v2.3.0
         with:
           cmd: build
-=======
-
-      - name: Install dependencies
-        - uses: borales/actions-yarn@v2.3.0
-        with:
-          cmd: install
-
-      - name: Build repository
-      - uses: borales/actions-yarn@v2.3.0
-        with:
-          cmd: build
-
-      - name: Run Jest
->>>>>>> 64b7590212d721e7efa4b210f932f593e9b5b40d
         run: yarn test --coverage
 
       - name: Coveralls
