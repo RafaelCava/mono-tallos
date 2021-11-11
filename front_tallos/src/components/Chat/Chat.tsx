@@ -2,12 +2,12 @@ import React, {
   MutableRefObject, useEffect, useMemo, useRef, useState,
 } from 'react';
 import { useLocation } from 'react-router-dom';
-import io from 'socket.io-client';
+import io, { Socket } from 'socket.io-client';
 import { Message, PropsChat } from '../../interfaces/interfaces';
 
 const Chat = (props: PropsChat) => {
-  const [messages, setMessages] = useState<Message[]>([]);
   const location = useLocation();
+  const [messages, setMessages] = useState<Message[]>([]);
 
   const queryParams: any = useMemo(() => {
     const query = new URLSearchParams(location.search);
@@ -17,29 +17,31 @@ const Chat = (props: PropsChat) => {
     };
   }, [location]);
 
-  const socket = useMemo(() => io('http://localhost:3000', { transports: ['websocket'], query: { name: queryParams.name, group_id: queryParams.group_id } }), [queryParams]);
+  const socket = useMemo<Socket>(() => io('http://localhost:3000', { transports: ['websocket'], query: { name: queryParams.name, group_id: queryParams.group_id } }), [queryParams]);
 
   useEffect(() => {
     socket.on('connect', () => {
       console.log('abriu a sessão');
 
       socket.on('receive-message', (data: { message: string, name: string }) => {
-        console.log(data);
         setMessages((prevState) => [...prevState, data]);
       });
     });
   }, [socket]);
 
+  const inpuRef = useRef() as MutableRefObject<any>;
+
   const sendMessage = () => {
     const message = inpuRef.current.value;
-    inpuRef.current.value = '';
     socket.emit('send-message', { message });
+<<<<<<< HEAD
     const name  = queryParams.name as string;
+=======
+    const name = queryParams.name as string;
+>>>>>>> 1cc34f7d89d93a3d1292e70a90c96ecebd3d4520
     const data = { message, name };
     setMessages((prevState) => [...prevState, data]);
   };
-
-  const inpuRef = useRef() as MutableRefObject<any>;
 
   return (
     <div>
@@ -49,8 +51,8 @@ const Chat = (props: PropsChat) => {
         {queryParams.name}
       </h1>
       <ul>
-        {messages.map((message, index) => (
-          <li key={index}>
+        {messages.map((message, key) => (
+          <li key={key}>
             {message.name}
             {' '}
             -

@@ -1,0 +1,32 @@
+name: Test
+
+on: ['push', 'pull_request']
+
+jobs:
+  build:
+    name: Test code
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      
+      - name: Install depencies
+        uses: borales/actions-yarn@v2.3.0
+        with: 
+          cmd: install
+      
+      - name: Build project
+        uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: build
+          
+      - name: Run Jest
+        run: yarn test --coverage

@@ -9,4 +9,4 @@ services:
     ports:
       - 3001:3000
     volumes:
-      - .:/home/node/app-front
+      - .:/home/node/app
