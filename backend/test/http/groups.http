@@ -3,11 +3,11 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRm9ybWF0ZWQiOnsiaWQi
 
 ###
 POST http://localhost:3000/groups/
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRm9ybWF0ZWQiOnsiaWQiOjUsIm5hbWUiOiJ0ZXN0ZSIsImdyb3Vwc19jcmVhdGVfbW91bnQiOjAsImNyZWF0ZWRfYXQiOiIyMDIxLTExLTA3VDEzOjI3OjAyLjEwNloifSwiaWF0IjoxNjM2MzIyMjc1LCJleHAiOjE2MzYzNTEwNzV9.3ZrpGSYt0D4vOs0sxTWRQuVm7dhpuEvReQfSh04JJrQ
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRm9ybWF0ZWQiOnsiaWQiOjEsIm5hbWUiOiJ0ZXN0ZSIsImdyb3Vwc19jcmVhdGVfbW91bnQiOjAsImNyZWF0ZWRfYXQiOiIyMDIxLTExLTEwVDAyOjE2OjI1LjE2MloifSwiaWF0IjoxNjM2NTEwNTkxLCJleHAiOjE2MzY1MzkzOTF9.ikjRjKyskvjy61CcC9wu_LHJ6XziFV2QjcllGCKTPjA
 Content-Type: application/json
 
 {
-    "name": "Grupo do fei"
+    "name": "Grupo do fei 3"
 }
 ###
 DELETE http://localhost:3000/groups/3
