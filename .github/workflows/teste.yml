@@ -1,37 +1,31 @@
-name: Test
+name: PIPELINE OF TESTS
 
-on: ['push', 'pull_request']
+on:
+  push:
+    branches: master
 
 jobs:
-  build:
-    name: Test code
+  test-backen:
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./backend
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    strategy:
+      matrix:
+        node-version: [14.x]
+        architecture: [x64]
     steps:
-      - name: Checkout repository
+      - name: CHECK-OUT GIT REPOSITORY
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      
-      - name: Set up Node
+
+      - name: USE NODEJS ${{ matrix.node-version }} - ${{ matrix.architecture }}
         uses: actions/setup-node@v2
-        with:
-          node-version: '14'
 
-      - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+      - name: INSTALL PROJECT DEPENDENCIES (YARN)
+        run: yarn install
 
-      - name: Build project
+      - name: Build project 
         run: yarn build
 
-      - name: Run Jest
-        run: yarn test --coverage
-
-      - name: Coveralls
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: UNIT TEST (JEST)
+        run: yarn test
