@@ -26,6 +26,3 @@ jobs:
 
       - name: Build project 
         run: yarn build
-
-      - name: UNIT TEST (JEST)
-        run: yarn test
