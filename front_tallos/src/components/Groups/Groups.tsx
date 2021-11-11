@@ -36,8 +36,8 @@ const Groups = () => {
         <input type="text" id="name" ref={inpuRef} />
       </p>
       <ul>
-        {groups.map((group, itens) => (
-          <li onClick={() => toChat(group.id)} key={itens}>
+        {groups.map((group, key) => (
+          <li onClick={() => toChat(group.id)} key={key}>
             {group.name}
           </li>
         ))}
