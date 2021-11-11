@@ -1,9 +1,9 @@
-name: Test
+name: CI
 
 on: ['push', 'pull_request']
 
 jobs:
-  code:
+  build:
     name: Test code
     runs-on: ubuntu-latest
     env:
