@@ -1,6 +1,8 @@
 name: Test
 
 on: ['push', 'pull_request']
+  branch:
+    - master
 
 jobs:
   build:
@@ -21,7 +23,9 @@ jobs:
       - name: Install depencies
         uses: borales/actions-yarn@v2.3.0
         with: 
-          cmd: install
+          cmd: |
+            cd /backend
+            install
       
       - name: Build project
         uses: borales/actions-yarn@v2.3.0
