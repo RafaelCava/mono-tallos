@@ -1,4 +1,4 @@
-name: CI
+name: Test
 
 on: ['push', 'pull_request']
 
@@ -17,18 +17,16 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14'
-       - uses: borales/actions-yarn
+      
+      - name: Install depencies
+        uses: borales/actions-yarn@v2.3.0
+        with: 
+          cmd: install
+      
+      - name: Build project
+        uses: borales/actions-yarn@v2.3.0
         with:
-          cmd: install 
-      - uses: borales/actions-yarn
-        with:
-          cmd: build 
-      - uses: borales/actions-yarn
-        with:
-          cmd: test 
+          cmd: build
+          
       - name: Run Jest
         run: yarn test --coverage
-      - name: Coveralls
-        uses: coverallsapp/github-action@master
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
