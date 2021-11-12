@@ -34,11 +34,7 @@ const Chat = (props: PropsChat) => {
   const sendMessage = () => {
     const message = inpuRef.current.value;
     socket.emit('send-message', { message });
-<<<<<<< HEAD
-    const name  = queryParams.name as string;
-=======
     const name = queryParams.name as string;
->>>>>>> 1cc34f7d89d93a3d1292e70a90c96ecebd3d4520
     const data = { message, name };
     setMessages((prevState) => [...prevState, data]);
   };
