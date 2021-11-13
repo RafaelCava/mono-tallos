@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/button-has-type */
@@ -9,20 +10,20 @@ const Login = () => {
   const [inputValueLogin, setInputValueLogin] = useState('');
   const [inputValueSenha, setInputValueSenha] = useState('');
   const [formActive, setFormActive] = useState(true);
-  // const [visiblePassword, setVisiblePassword] = useState();
   const [token, setToken, removeToken] = useLocalStorage('token', '');
   const handleVerifyLogin = async (): Promise<void> => {
-    const data = await fetch('http://localhost:3000', {
+    const requestOptions = {
       method: 'POST',
-      headers: {
-        'Content-Type': 'aplication/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email: inputValueLogin,
-        password: inputValueSenha,
-      }),
-    });
+        password: inputValueSenha
+      })
+    };
+    const data = await fetch('http://localhost:3000/login', requestOptions);
     const response: JSON = await data.json();
+    console.log(inputValueLogin, 'login');
+    console.log(inputValueSenha, 'senha');
     console.log(response);
     setToken('true');
   };
