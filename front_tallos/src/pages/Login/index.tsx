@@ -3,9 +3,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/button-has-type */
-import React, { useState } from 'react';
-import { useLocalStorage } from 'react-use';
-import { reponseLogin } from '../../interfaces/interfaces';
+import React from 'react';
 import useHooks from '../../hooks/useHooks';
 
 const Login = () => {
@@ -19,7 +17,6 @@ const Login = () => {
   const {
     inputValueLogin,
     inputValueSenha,
-    setFormActive,
     inputValueCadastrarName,
     inputValueCadastrarEmail,
     inputValueCadastrarSenha,
@@ -30,65 +27,69 @@ const Login = () => {
     setInputValueLogin,
     setInputValueSenha,
     setChecked,
-    checked
+    checked,
+    handleVerifyLogin,
+    handleFormSetCadastro,
+    handleFormSetLogin,
+    handleFormCadastrar
   } = useHooks();
 
-  const [token, setToken, removeToken] = useLocalStorage('token', '');
-  const handleVerifyLogin = async (): Promise<void> => {
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email: inputValueLogin,
-        password: inputValueSenha
-      })
-    };
-    const data = await fetch('http://localhost:3000/login', requestOptions);
-    const response: reponseLogin = await data.json();
-    setToken(response.token);
-  };
-  const handleFormSetCadastro = (): void => {
-    setFormActive(false);
-  };
-  const handleFormSetLogin = ():void => {
-    setFormActive(true);
-  };
-  const handleFormCadastrar = async (): Promise<void> => {
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: inputValueCadastrarName,
-        email: inputValueCadastrarEmail,
-        senha: inputValueCadastrarSenha
-      })
-    };
-    const response = await fetch('http://localhost:3000/users', requestOptions);
+  // const [token, setToken, removeToken] = useLocalStorage('token', '');
+  // const handleVerifyLogin = async (): Promise<void> => {
+  //   const requestOptions = {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({
+  //       email: inputValueLogin,
+  //       password: inputValueSenha
+  //     })
+  //   };
+  //   const data = await fetch('http://localhost:3000/login', requestOptions);
+  //   const response: reponseLogin = await data.json();
+  //   setToken(response.token);
+  // };
+  // const handleFormSetCadastro = (): void => {
+  //   setFormActive(false);
+  // };
+  // const handleFormSetLogin = ():void => {
+  //   setFormActive(true);
+  // };
+  // const handleFormCadastrar = async (): Promise<void> => {
+  //   const requestOptions = {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       name: inputValueCadastrarName,
+  //       email: inputValueCadastrarEmail,
+  //       senha: inputValueCadastrarSenha
+  //     })
+  //   };
+  //   const response = await fetch('http://localhost:3000/users', requestOptions);
 
-    const data = await response.json();
+  //   const data = await response.json();
 
-    const statusCode = response.status;
+  //   const statusCode = response.status;
 
-    console.log(statusCode);
+  //   console.log(statusCode);
 
-    console.log(data);
+  //   console.log(data);
 
-    if (statusCode === 200 || statusCode === 201) {
-      alert('Usuario cadastrado com sucesso');
+  //   if (statusCode === 200 || statusCode === 201) {
+  //     alert('Usuario cadastrado com sucesso');
 
-      setFormActive(true);
+  //     setFormActive(true);
 
-      setInputValueCadastrarName('');
+  //     setInputValueCadastrarName('');
 
-      setInputValueCadastrarEmail('');
+  //     setInputValueCadastrarEmail('');
 
-      setInputValueCadastrarSenha('');
-    } else {
-      alert(data.error.error);
-    }
-  };
+  //     setInputValueCadastrarSenha('');
+  //   } else {
+  //     alert(data.error.error);
+  //   }
+  // };
   return (
     <div className="container">
       <div className="box">

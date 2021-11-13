@@ -6,9 +6,14 @@ import React, {
   MutableRefObject, useEffect, useRef, useState,
 } from 'react';
 import { useHistory } from 'react-router-dom';
+import useHooks from '../../hooks/useHooks';
 import { GroupsModel } from '../../interfaces/interfaces';
 
 const Groups = () => {
+  const {
+    token,
+  } = useHooks();
+
   const [groups, setGroups] = useState<GroupsModel[]>([]);
 
   const inpuRef = useRef() as MutableRefObject<any>;
@@ -16,7 +21,7 @@ const Groups = () => {
   useEffect(() => {
     axios.get('http://localhost:3000/groups', {
       headers: {
-        Authorization: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRm9ybWF0ZWQiOnsiaWQiOjEsIm5hbWUiOiJ0ZXN0ZSIsImdyb3Vwc19jcmVhdGVfbW91bnQiOjAsImNyZWF0ZWRfYXQiOiIyMDIxLTExLTA5VDIxOjE1OjE1LjQ3M1oifSwiaWF0IjoxNjM2NDk3MDgzLCJleHAiOjE2MzY1MjU4ODN9.55_6Fmli_2AEPB2DbldgA_25nAT3feMVTKL1rhjfRKo',
+        Authorization: token,
       },
     }).then((response) => { setGroups(response.data); });
   }, []);
