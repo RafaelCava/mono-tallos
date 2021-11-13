@@ -2,7 +2,7 @@ GET http://localhost:3000/users/
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRm9ybWF0ZWQiOnsiaWQiOjEsIm5hbWUiOiJ0ZXN0ZSIsImdyb3Vwc19jcmVhdGVfbW91bnQiOjAsImNyZWF0ZWRfYXQiOiIyMDIxLTExLTA5VDIxOjE1OjE1LjQ3M1oifSwiaWF0IjoxNjM2NDkyNTI0LCJleHAiOjE2MzY1MjEzMjR9.0_5_Ete331wzzQC9CkL7QUl2Pwet_vXeoazz6xsRPfQ
 
 ###
-POST http://localhost:3000/users/
+POST http://54.245.245.59:3000/users/
 Content-Type: application/json
 
 {

@@ -1,0 +1,23 @@
+GET http://35.84.73.130:3000/groups/
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRm9ybWF0ZWQiOnsiaWQiOjEsIm5hbWUiOiJ0ZXN0ZSIsImdyb3Vwc19jcmVhdGVfbW91bnQiOjAsImNyZWF0ZWRfYXQiOiIyMDIxLTExLTEwVDE2OjA4OjA4LjY2MVoifSwiaWF0IjoxNjM2NTYwNTA2LCJleHAiOjE2MzY1ODkzMDZ9.YmNdyP_Gpn39UShSGwmn-Qr1TlKEDUGqwYH8FSuur6o
+
+###
+<<<<<<< HEAD
+POST http://54.245.245.59:3000/groups/
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRm9ybWF0ZWQiOnsiaWQiOjEsIm5hbWUiOiJ0ZXN0ZSIsImdyb3Vwc19jcmVhdGVfbW91bnQiOjAsImNyZWF0ZWRfYXQiOiIyMDIxLTExLTEwVDE2OjMyOjMwLjA0OVoifSwiaWF0IjoxNjM2NTYyMTIwLCJleHAiOjE2MzY1OTA5MjB9.EcOY5PIeSJcaaJ5DxN67gYb-ETsvH5H4ZyR0KCdFO2I
+Content-Type: application/json
+
+{
+    "name": "Grupo do fei 1"
+=======
+POST http://localhost:3000/groups/
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRm9ybWF0ZWQiOnsiaWQiOjEsIm5hbWUiOiJ0ZXN0ZSIsImdyb3Vwc19jcmVhdGVfbW91bnQiOjAsImNyZWF0ZWRfYXQiOiIyMDIxLTExLTEwVDAyOjE2OjI1LjE2MloifSwiaWF0IjoxNjM2NTEwNTkxLCJleHAiOjE2MzY1MzkzOTF9.ikjRjKyskvjy61CcC9wu_LHJ6XziFV2QjcllGCKTPjA
+Content-Type: application/json
+
+{
+    "name": "Grupo do fei 3"
+>>>>>>> 6f3c7f094307556bd1291b6033ab143ac002fd10
+}
+###
+DELETE http://localhost:3000/groups/3
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRm9ybWF0ZWQiOnsiaWQiOjMsIm5hbWUiOiJ0ZXN0ZSIsImdyb3Vwc19jcmVhdGVfbW91bnQiOjAsImNyZWF0ZWRfYXQiOiIyMDIxLTExLTA3VDAyOjUyOjAwLjc2NFoifSwiaWF0IjoxNjM2Mjg1ODMzLCJleHAiOjE2MzYzMTQ2MzN9.rLjRXWYWor-3F0pFctJqFPjNxyZQsmMxhRVcT6v3VDk
