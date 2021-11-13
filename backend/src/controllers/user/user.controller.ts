@@ -6,7 +6,9 @@ import {
   Delete,
   HttpCode,
   Headers,
+  Response as Response_Nest
 } from '@nestjs/common';
+import { Response } from 'express';
 import { User } from 'src/models/user.model';
 import { UserService } from '../../services/userServices/user.service';
 
@@ -21,12 +23,11 @@ export class UserController {
   @Get()
   index(@Headers('user') user: userHeader) {
     return this.userService.searchUserService(user.userFormated.id);
-    return;
   }
 
   @Post()
-  async createUser(@Body() body) {
-    return this.userService.createUserService(body);
+  async createUser(@Body() body, @Response_Nest() response: Response) {
+    return this.userService.createUserService(body, response);
   }
 
   @Delete()
