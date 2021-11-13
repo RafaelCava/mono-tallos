@@ -12,3 +12,7 @@ export interface Message {
   name: string
   message: string
 }
+
+export interface reponseLogin extends JSON {
+  token: string
+}
