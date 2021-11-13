@@ -7,13 +7,6 @@ import React from 'react';
 import useHooks from '../../hooks/useHooks';
 
 const Login = () => {
-  // const [checked, setChecked] = useState(false);
-  // const [inputValueLogin, setInputValueLogin] = useState('');
-  // const [inputValueSenha, setInputValueSenha] = useState('');
-  // const [inputValueCadastrarEmail, setInputValueCadastrarEmail] = useState('');
-  // const [inputValueCadastrarSenha, setInputValueCadastrarSenha] = useState('');
-  // const [inputValueCadastrarName, setInputValueCadastrarName] = useState('');
-  // const [formActive, setFormActive] = useState(true);
   const {
     inputValueLogin,
     inputValueSenha,
@@ -34,62 +27,6 @@ const Login = () => {
     handleFormCadastrar
   } = useHooks();
 
-  // const [token, setToken, removeToken] = useLocalStorage('token', '');
-  // const handleVerifyLogin = async (): Promise<void> => {
-  //   const requestOptions = {
-  //     method: 'POST',
-  //     headers: { 'Content-Type': 'application/json' },
-  //     body: JSON.stringify({
-  //       email: inputValueLogin,
-  //       password: inputValueSenha
-  //     })
-  //   };
-  //   const data = await fetch('http://localhost:3000/login', requestOptions);
-  //   const response: reponseLogin = await data.json();
-  //   setToken(response.token);
-  // };
-  // const handleFormSetCadastro = (): void => {
-  //   setFormActive(false);
-  // };
-  // const handleFormSetLogin = ():void => {
-  //   setFormActive(true);
-  // };
-  // const handleFormCadastrar = async (): Promise<void> => {
-  //   const requestOptions = {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       name: inputValueCadastrarName,
-  //       email: inputValueCadastrarEmail,
-  //       senha: inputValueCadastrarSenha
-  //     })
-  //   };
-  //   const response = await fetch('http://localhost:3000/users', requestOptions);
-
-  //   const data = await response.json();
-
-  //   const statusCode = response.status;
-
-  //   console.log(statusCode);
-
-  //   console.log(data);
-
-  //   if (statusCode === 200 || statusCode === 201) {
-  //     alert('Usuario cadastrado com sucesso');
-
-  //     setFormActive(true);
-
-  //     setInputValueCadastrarName('');
-
-  //     setInputValueCadastrarEmail('');
-
-  //     setInputValueCadastrarSenha('');
-  //   } else {
-  //     alert(data.error.error);
-  //   }
-  // };
   return (
     <div className="container">
       <div className="box">
