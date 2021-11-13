@@ -20,7 +20,9 @@ export class UserService {
   async createUserService(body: User, res: Response): Promise<void | Response> {
     const verify = await this.userRepo.findOne({ email: body.email });
     if (verify) {
-      return res.status(400).json('Email em uso');
+      return res.status(400).json({error: {
+        error: 'Email em uso'
+      }});
     }
     body.senha = await hash(body.senha, 11);
     const usuario = this.userRepo.create(body);

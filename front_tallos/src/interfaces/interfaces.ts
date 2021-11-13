@@ -13,6 +13,6 @@ export interface Message {
   message: string
 }
 
-export interface reponseLogin extends JSON {
+export interface reponseLogin extends Response {
   token: string
 }
