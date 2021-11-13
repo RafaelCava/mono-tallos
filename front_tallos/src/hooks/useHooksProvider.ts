@@ -1,37 +1,36 @@
-/* eslint-disable comma-dangle */
-import { useState } from 'react';
+/* eslint-disable consistent-return */
+import { MutableRefObject, useRef, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useLocalStorage } from 'react-use';
-import { reponseLogin } from '../interfaces/interfaces';
+import { GroupsModel, reponseLogin } from '../interfaces/interfaces';
 
 const useHookProvider = () => {
   const [checked, setChecked] = useState(false);
+
   const [inputValueLogin, setInputValueLogin] = useState('');
+
   const [inputValueSenha, setInputValueSenha] = useState('');
+
   const [inputValueCadastrarEmail, setInputValueCadastrarEmail] = useState('');
+
   const [inputValueCadastrarSenha, setInputValueCadastrarSenha] = useState('');
+
   const [inputValueCadastrarName, setInputValueCadastrarName] = useState('');
+
   const [formActive, setFormActive] = useState(true);
+
   const [token, setToken, removeToken] = useLocalStorage('token', '');
-  const handleVerifyLogin = async (): Promise<void> => {
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email: inputValueLogin,
-        password: inputValueSenha,
-      }),
-    };
-    const data = await fetch('http://localhost:3000/login', requestOptions);
-    const response: reponseLogin = await data.json();
-    setToken(response.token);
-  };
-  const handleFormSetCadastro = (): void => {
-    setFormActive(false);
-  };
+
+  const [groups, setGroups] = useState<GroupsModel[]>([]);
+
+  const inputRef = useRef() as MutableRefObject<any>;
+
   const handleFormSetLogin = ():void => {
-    setFormActive(true);
+    setFormActive(!formActive);
   };
-  const handleFormCadastrar = async (): Promise<void> => {
+
+  const handleFormCadastrar = async (e: any): Promise<void> => {
+    e.preventDefault();
     const requestOptions = {
       method: 'POST',
       headers: {
@@ -47,25 +46,21 @@ const useHookProvider = () => {
 
     const data = await response.json();
 
-    const statusCode = response.status;
-
-    console.log(statusCode);
-
-    console.log(data);
-
-    if (statusCode === 200 || statusCode === 201) {
-      alert('Usuario cadastrado com sucesso');
-
-      setFormActive(true);
-
-      setInputValueCadastrarName('');
-
-      setInputValueCadastrarEmail('');
-
-      setInputValueCadastrarSenha('');
-    } else {
+    if (data.error) {
       alert(data.error.error);
     }
+  };
+
+  const cleanInput = (): void => {
+    alert('usuario cadastrado com sucesso');
+
+    setInputValueCadastrarEmail('');
+
+    setInputValueCadastrarName('');
+
+    setInputValueCadastrarSenha('');
+
+    setFormActive(!formActive);
   };
 
   return {
@@ -83,13 +78,15 @@ const useHookProvider = () => {
     setInputValueCadastrarName,
     formActive,
     setFormActive,
-    handleVerifyLogin,
     setToken,
     token,
     removeToken,
-    handleFormSetCadastro,
+    handleFormCadastrar,
     handleFormSetLogin,
-    handleFormCadastrar
+    cleanInput,
+    inputRef,
+    groups,
+    setGroups
   };
 };
 

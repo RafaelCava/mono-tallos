@@ -37,6 +37,7 @@ const Chat = (props: PropsChat) => {
     const name = queryParams.name as string;
     const data = { message, name };
     setMessages((prevState) => [...prevState, data]);
+    inpuRef.current.value = '';
   };
 
   return (

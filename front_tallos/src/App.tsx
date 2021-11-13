@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Groups from './components/Groups';
+import Groups from './pages/Groups';
 import Chat from './components/Chat';
 import Login from './pages/Login';
 import ComponentProvider from './Context/ComponentProvider';

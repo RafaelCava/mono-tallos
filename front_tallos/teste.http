@@ -1,0 +1,16 @@
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+  "email": "rafael@rafael.com",
+  "password": "teste"
+}
+
+###
+POST http://localhost:3000/groups
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRm9ybWF0ZWQiOnsiaWQiOjEsIm5hbWUiOiJyYWZhZWwiLCJncm91cHNfY3JlYXRlX21vdW50IjowLCJjcmVhdGVkX2F0IjoiMjAyMS0xMS0xM1QxNjo1MzoxNy43MjRaIn0sImlhdCI6MTYzNjgzNzkwNCwiZXhwIjoxNjM2ODY2NzA0fQ.hDNnnhy4JBT0w-BqHP407UHffrRnDoCo6mNcEKpVgSQ
+
+{
+  "name": "grupo do fei 3"
+}

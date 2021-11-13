@@ -1,22 +1,15 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable react/button-has-type */
 import axios from 'axios';
-import React, {
-  MutableRefObject, useEffect, useRef, useState,
-} from 'react';
+import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import useHooks from '../../hooks/useHooks';
-import { GroupsModel } from '../../interfaces/interfaces';
 
-const Groups = () => {
+const GroupsList = () => {
   const {
     token,
+    inputRef,
+    setGroups,
+    groups
   } = useHooks();
-
-  const [groups, setGroups] = useState<GroupsModel[]>([]);
-
-  const inpuRef = useRef() as MutableRefObject<any>;
 
   useEffect(() => {
     axios.get('http://localhost:3000/groups', {
@@ -29,7 +22,7 @@ const Groups = () => {
   const history = useHistory();
 
   const toChat = (groupId: string) => {
-    const name = inpuRef.current.value;
+    const name = inputRef.current.value;
     history.push(`/chat?group_id=${groupId}&name=${name}`);
   };
 
@@ -38,10 +31,10 @@ const Groups = () => {
       <h1>Groups</h1>
       <p>
         <label htmlFor="name">Name:</label>
-        <input type="text" id="name" ref={inpuRef} />
+        <input type="text" id="name" ref={inputRef} />
       </p>
       <ul>
-        {groups.map((group, key) => (
+        {groups.map((group: any, key: any) => (
           <li onClick={() => toChat(group.id)} key={key}>
             {group.name}
           </li>
@@ -51,4 +44,4 @@ const Groups = () => {
   );
 };
 
-export default Groups;
+export default GroupsList;
