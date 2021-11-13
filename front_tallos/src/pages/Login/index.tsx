@@ -18,7 +18,7 @@ const Login = () => {
       },
       body: JSON.stringify({
         email: inputValueLogin,
-        senha: inputValueSenha,
+        password: inputValueSenha,
       }),
     });
     const response: JSON = await data.json();
