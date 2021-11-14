@@ -1,6 +1,5 @@
 /* eslint-disable consistent-return */
 import { MutableRefObject, useRef, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useLocalStorage } from 'react-use';
 import { GroupsModel, reponseLogin } from '../interfaces/interfaces';
 
@@ -21,9 +20,13 @@ const useHookProvider = () => {
 
   const [token, setToken, removeToken] = useLocalStorage('token', '');
 
+  const [userNameLocal, setUserNameLocal, removeUserNameLocal] = useLocalStorage('userName', '');
+
+  const [userIdLocal, setUserIdLocal, removeUserIdLocal] = useLocalStorage('userId', '');
+
   const [groups, setGroups] = useState<GroupsModel[]>([]);
 
-  const inputRef = useRef() as MutableRefObject<any>;
+  const inputRefGroups = useRef() as MutableRefObject<any>;
 
   const handleFormSetLogin = ():void => {
     setFormActive(!formActive);
@@ -51,7 +54,9 @@ const useHookProvider = () => {
     }
   };
 
-  const cleanInput = (): void => {
+  const cleanInput = (e: any): void => {
+    handleFormCadastrar(e);
+
     alert('usuario cadastrado com sucesso');
 
     setInputValueCadastrarEmail('');
@@ -84,9 +89,15 @@ const useHookProvider = () => {
     handleFormCadastrar,
     handleFormSetLogin,
     cleanInput,
-    inputRef,
+    inputRef: inputRefGroups,
     groups,
-    setGroups
+    setGroups,
+    userNameLocal,
+    setUserNameLocal,
+    removeUserNameLocal,
+    userIdLocal,
+    setUserIdLocal,
+    removeUserIdLocal
   };
 };
 

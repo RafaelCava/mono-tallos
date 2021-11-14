@@ -13,7 +13,8 @@ const FormLogin = () => {
     inputValueLogin,
     inputValueSenha,
     setToken,
-    token
+    setUserNameLocal,
+    setUserIdLocal
   } = useHooks();
 
   const handleVerifyLogin = async (e: any): Promise<void> => {
@@ -29,18 +30,24 @@ const FormLogin = () => {
 
     const data = await fetch('http://localhost:3000/login', requestOptions);
 
+    const toGroups = (): void => {
+      history.push('/groups');
+    };
+
     const response: reponseLogin = await data.json();
-    setToken(response.token);
-    toGroups();
+
+    if (response.token) {
+      setToken(response.token);
+      setUserIdLocal(response.userId);
+      setUserNameLocal(response.userName);
+      toGroups();
+    } else {
+      alert('Usuario ou senha inválidos');
+    }
   };
 
   const history = useHistory();
 
-  const toGroups = (): void => {
-    if (token) {
-      history.push('/groups');
-    }
-  };
   return (
     <form className="box login" onSubmit={(e) => handleVerifyLogin(e)}>
       <h1>Login</h1>

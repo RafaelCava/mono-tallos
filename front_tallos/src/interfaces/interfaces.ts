@@ -15,4 +15,6 @@ export interface Message {
 
 export interface reponseLogin extends Response {
   token: string
+  userId: string
+  userName: string
 }

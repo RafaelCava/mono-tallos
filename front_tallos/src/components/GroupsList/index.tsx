@@ -6,9 +6,11 @@ import useHooks from '../../hooks/useHooks';
 const GroupsList = () => {
   const {
     token,
-    inputRef,
+    inputRefGroups,
     setGroups,
-    groups
+    groups,
+    userNameLocal,
+    userIdLocal,
   } = useHooks();
 
   useEffect(() => {
@@ -21,21 +23,23 @@ const GroupsList = () => {
 
   const history = useHistory();
 
-  const toChat = (groupId: string) => {
-    const name = inputRef.current.value;
-    history.push(`/chat?group_id=${groupId}&name=${name}`);
+  const toChat = (groupId: string, groupName: string) => {
+    history.push(`/chat?group_id=${groupId}&name=${groupName}&id=${userIdLocal}`);
   };
 
   return (
     <div>
-      <h1>Groups</h1>
+      <h1>
+        Bem vindo(a) Sr(a).
+        {userNameLocal}
+      </h1>
       <p>
         <label htmlFor="name">Name:</label>
-        <input type="text" id="name" ref={inputRef} />
+        <input type="text" id="name" ref={inputRefGroups} />
       </p>
       <ul>
         {groups.map((group: any, key: any) => (
-          <li onClick={() => toChat(group.id)} key={key}>
+          <li onClick={() => toChat(group.id, group.name)} key={key}>
             {group.name}
           </li>
         ))}

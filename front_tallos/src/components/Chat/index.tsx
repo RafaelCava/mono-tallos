@@ -4,8 +4,10 @@ import React, {
 import { useLocation } from 'react-router-dom';
 import io, { Socket } from 'socket.io-client';
 import { Message, PropsChat } from '../../interfaces/interfaces';
+import useHooks from '../../hooks/useHooks';
 
 const Chat = (props: PropsChat) => {
+  const { userNameLocal } = useHooks();
   const location = useLocation();
   const [messages, setMessages] = useState<Message[]>([]);
 
@@ -34,7 +36,7 @@ const Chat = (props: PropsChat) => {
   const sendMessage = () => {
     const message = inpuRef.current.value;
     socket.emit('send-message', { message });
-    const name = queryParams.name as string;
+    const name = userNameLocal as string;
     const data = { message, name };
     setMessages((prevState) => [...prevState, data]);
     inpuRef.current.value = '';

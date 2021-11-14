@@ -7,10 +7,20 @@ Content-Type: application/json
 }
 
 ###
-POST http://localhost:3000/groups
+POST http://localhost:3000/users
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRm9ybWF0ZWQiOnsiaWQiOjEsIm5hbWUiOiJyYWZhZWwiLCJncm91cHNfY3JlYXRlX21vdW50IjowLCJjcmVhdGVkX2F0IjoiMjAyMS0xMS0xM1QxNjo1MzoxNy43MjRaIn0sImlhdCI6MTYzNjgzNzkwNCwiZXhwIjoxNjM2ODY2NzA0fQ.hDNnnhy4JBT0w-BqHP407UHffrRnDoCo6mNcEKpVgSQ
 
 {
-  "name": "grupo do fei 3"
+  "name": "rafael",
+  "email": "rafael@rafael.com",
+  "senha": "teste"
+}
+
+###
+POST http://localhost:3000/groups
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRm9ybWF0ZWQiOnsiaWQiOjEsIm5hbWUiOiJyYWZhZWwiLCJncm91cHNfY3JlYXRlX21vdW50IjowLCJjcmVhdGVkX2F0IjoiMjAyMS0xMS0xNFQwMzowODowMC4zODJaIn0sImlhdCI6MTYzNjg1OTM0NiwiZXhwIjoxNjM2ODg4MTQ2fQ.mkk9gfG76ks0-U8haAK9mS-CZdf81EbUG_cA89ETJQ4
+
+{
+  "name": "grupo do fei 11"
 }
