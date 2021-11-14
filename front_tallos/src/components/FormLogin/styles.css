@@ -56,10 +56,4 @@ input {
 a {
   cursor: pointer;
 }
-
-@media screen and (max-width: 750px) {
-  a {
-    color: red;
-  }
-}
 /*# sourceMappingURL=styles.css.map */

@@ -6,7 +6,8 @@ services:
     build: .
     entrypoint: sh ./.docker/entrypoint.sh
     container_name: front_tallos
+    tty: true
     ports:
-      - 3001:3000
+      - 80:3000
     volumes:
       - .:/home/node/app
