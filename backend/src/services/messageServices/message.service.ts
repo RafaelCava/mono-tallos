@@ -26,7 +26,9 @@ export class MessageService {
   ) {
     const group = await this.groupRepo.findOne({ id: +idGroup });
     if (!group) {
-      return res.status(400).json('Não existe o grupo que você esta tentando enviar mensagem!!');
+      return res.status(400).json({error:{
+        error: 'Não existe o grupo que você esta tentando enviar mensagem!!'
+      }});
     }
     const messageCreated = this.messageRepo.create({
       user_id: idUser,
