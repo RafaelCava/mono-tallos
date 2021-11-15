@@ -6,7 +6,7 @@ import Chat from './components/Chat';
 import Login from './pages/Login';
 import ComponentProvider from './Context/ComponentProvider';
 
-const App = () => (
+const App: React.FC = () => (
   <ComponentProvider>
     <Router>
       <Switch>
