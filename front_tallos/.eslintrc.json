@@ -39,6 +39,7 @@
         "jsx-a11y/anchor-is-valid": "off",
         "react/button-has-type": "off",
         "react/prop-types": "off",
-        "no-plusplus": "off"
+        "no-plusplus": "off",
+        "prefer-const": "off"
     }
 }

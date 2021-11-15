@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import GroupsList from '../../components/GroupsList';
 
-const Groups = () => (
+const Groups: React.FC = () => (
   <GroupsList />
 );
 

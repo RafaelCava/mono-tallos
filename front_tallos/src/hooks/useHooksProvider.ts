@@ -32,7 +32,7 @@ const useHookProvider = () => {
     setFormActive(!formActive);
   };
 
-  const handleFormCadastrar = async (e: any): Promise<void> => {
+  const handleFormCadastrar = async (e: any): Promise<void | boolean> => {
     e.preventDefault();
     const requestOptions = {
       method: 'POST',
@@ -49,14 +49,23 @@ const useHookProvider = () => {
 
     const data = await response.json();
 
-    if (data.error) {
-      alert(data.error.error);
+    if (!data.error.error) {
+      console.log('pulo do macaco');
     }
+    alert(data.error.error);
   };
 
-  const cleanInput = (e: any): void => {
+  const cleanInput = async (e: any): Promise<void> => {
     handleFormCadastrar(e);
 
+    setInputValueCadastrarEmail('');
+
+    setInputValueCadastrarName('');
+
+    setInputValueCadastrarSenha('');
+  };
+
+  const clean = () => {
     alert('usuario cadastrado com sucesso');
 
     setInputValueCadastrarEmail('');
