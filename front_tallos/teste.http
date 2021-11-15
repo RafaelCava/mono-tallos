@@ -2,7 +2,7 @@ POST http://localhost:3000/login
 Content-Type: application/json
 
 {
-  "email": "rafael@rafael.com",
+  "email": "teste@teste.com",
   "password": "teste"
 }
 
@@ -12,15 +12,15 @@ Content-Type: application/json
 
 {
   "name": "rafael",
-  "email": "rafael@rafael.com",
+  "email": "razcxf12312312ael@rfasdafael.com",
   "senha": "teste"
 }
 
 ###
 POST http://localhost:3000/groups
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRm9ybWF0ZWQiOnsiaWQiOjEsIm5hbWUiOiJyYWZhZWwiLCJncm91cHNfY3JlYXRlX21vdW50IjowLCJjcmVhdGVkX2F0IjoiMjAyMS0xMS0xNFQwMzowODowMC4zODJaIn0sImlhdCI6MTYzNjg1OTM0NiwiZXhwIjoxNjM2ODg4MTQ2fQ.mkk9gfG76ks0-U8haAK9mS-CZdf81EbUG_cA89ETJQ4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRm9ybWF0ZWQiOnsiaWQiOjIzLCJuYW1lIjoidGVzdGUiLCJncm91cHNfY3JlYXRlX21vdW50IjowLCJjcmVhdGVkX2F0IjoiMjAyMS0xMS0xNVQyMTo0NDozNS44NDJaIn0sImlhdCI6MTYzNzAxMjc0NSwiZXhwIjoxNjM3MDQxNTQ1fQ.HVO5JAfWngHjbIKgyWNSOF3PIzR7ux9hqzxhm775tmM
 
 {
-  "name": "grupo do fei 11"
+  "name": "grupo do fei 3"
 }
