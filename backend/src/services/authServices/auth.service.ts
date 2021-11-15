@@ -5,6 +5,7 @@ import { Repository } from 'typeorm';
 import { sign } from 'jsonwebtoken';
 import { SecureToken } from './secretToken';
 import { compare } from 'bcrypt';
+import { Response } from 'express';
 
 interface Body {
   email: string;
@@ -17,19 +18,19 @@ export class AuthServices {
     @InjectRepository(User)
     private userRepo: Repository<User>,
   ) {}
-  async verifyAuthorization(body: Body): Promise<any> {
+  async verifyAuthorization(body: Body, res: Response): Promise<any> {
     const { email, password } = body;
     if (!email) {
-      return 'Email, campo obrigatório!!';
+      return res.status(400).json({error:{error:'Email, campo obrigatório!!'}});
     }
     if (!password) {
-      return 'Password, campo obrigatório!!';
+      return res.status(400).json({error:{error:'password, campo obrigatório!!'}});
     }
     const user = await this.userRepo.findOneOrFail({ email });
     const { senha, email: emailUser, ...userFormated } = user;
     const verifyHash = await compare(password, senha);
     if (!verifyHash) {
-      return 'error, not authorized';
+      return res.status(401).json({error:{error:'Not Auth'}});
     }
     const token = sign({ userFormated }, new SecureToken().secret(), {
       expiresIn: '8h',
