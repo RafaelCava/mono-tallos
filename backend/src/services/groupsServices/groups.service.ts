@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { hash } from 'bcrypt';
+import { Response } from 'express';
 import { Groups } from 'src/models/groups.model';
 import { Repository } from 'typeorm';
 
@@ -15,11 +16,15 @@ export class GroupsService {
     return await this.groupRepo.find();
   }
 
-  async createGroupService(body: Groups, id: number): Promise<any | string> {
+  async createGroupService(body: Groups, id: number, res: Response): Promise<any | string> {
     console.log(id);
     const verify = await this.groupRepo.findOne({ name: body.name });
     if (verify) {
-      return 'Nome de grupo em uso';
+      return res.status(400).json({
+        error:{
+          error:'Nome de grupo em uso'
+        }
+      });
     }
     if (body.password) {
       body.password = await hash(body.password, 11);
@@ -30,12 +35,12 @@ export class GroupsService {
     return groupSaved;
   }
 
-  async deleteGroup(id: string, userId: number): Promise<void | string> {
+  async deleteGroup(id: string, userId: number, res: Response): Promise<any | string> {
     await this.groupRepo.findOneOrFail({
       id: +id,
       user_creator_id: userId,
     });
     await this.groupRepo.delete({ id: +id, user_creator_id: userId });
-    return;
+    return res.status(204).json();
   }
 }
