@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Response } from 'express';
 import { Groups } from 'src/models/groups.model';
 import { Message } from 'src/models/message.model';
 import { Repository } from 'typeorm';
@@ -21,10 +22,11 @@ export class MessageService {
     idUser: number,
     idGroup: string,
     message: string,
+    res: Response
   ) {
     const group = await this.groupRepo.findOne({ id: +idGroup });
     if (!group) {
-      return 'Não existe o grupo que você esta tentando enviar mensagem';
+      return res.status(400).json('Não existe o grupo que você esta tentando enviar mensagem!!');
     }
     const messageCreated = this.messageRepo.create({
       user_id: idUser,
