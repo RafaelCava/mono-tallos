@@ -32,7 +32,7 @@ const useHookProvider = () => {
     setFormActive(!formActive);
   };
 
-  const handleFormCadastrar = async (e: any): Promise<void | boolean> => {
+  const handleFormCadastrar = async (e: any): Promise<void> => {
     e.preventDefault();
     const requestOptions = {
       method: 'POST',
@@ -47,34 +47,19 @@ const useHookProvider = () => {
     };
     const response = await fetch('http://localhost:3000/users', requestOptions);
 
+    const statusCode = response.status;
+
     const data = await response.json();
 
-    if (!data.error.error) {
-      console.log('pulo do macaco');
+    if (statusCode !== 201) {
+      alert(data.error.error);
     }
-    alert(data.error.error);
-  };
-
-  const cleanInput = async (e: any): Promise<void> => {
-    handleFormCadastrar(e);
 
     setInputValueCadastrarEmail('');
-
     setInputValueCadastrarName('');
-
     setInputValueCadastrarSenha('');
-  };
-
-  const clean = () => {
-    alert('usuario cadastrado com sucesso');
-
-    setInputValueCadastrarEmail('');
-
-    setInputValueCadastrarName('');
-
-    setInputValueCadastrarSenha('');
-
-    setFormActive(!formActive);
+    alert(data.mensagem.mensagem);
+    handleFormSetLogin();
   };
 
   return {
@@ -97,8 +82,7 @@ const useHookProvider = () => {
     removeToken,
     handleFormCadastrar,
     handleFormSetLogin,
-    cleanInput,
-    inputRef: inputRefGroups,
+    inputRefGroups,
     groups,
     setGroups,
     userNameLocal,

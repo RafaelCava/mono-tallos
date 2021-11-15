@@ -32,7 +32,7 @@ export class UserController {
 
   @Delete()
   @HttpCode(204)
-  deleteUser(@Headers('user') user: userHeader) {
-    return this.userService.deleteUserService(user.userFormated.id);
+  deleteUser(@Headers('user') user: userHeader, @Response_Nest() response: Response) {
+    return this.userService.deleteUserService(user.userFormated.id, response);
   }
 }
