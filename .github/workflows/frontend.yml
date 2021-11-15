@@ -12,7 +12,7 @@ jobs:
         working-directory: ./front_tallos
     strategy:
       matrix:
-        node-version: [12.x, 14.x]
+        node-version: [14.x, 16.x]
         architecture: [x64]
     steps:
       - name: CHECK-OUT GIT REPOSITORY
