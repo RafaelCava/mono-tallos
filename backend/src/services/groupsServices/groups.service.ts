@@ -4,12 +4,14 @@ import { hash } from 'bcrypt';
 import { Response } from 'express';
 import { Groups } from 'src/models/groups.model';
 import { Repository } from 'typeorm';
-
+import { User } from '../../models/user.model'
 @Injectable()
 export class GroupsService {
   constructor(
     @InjectRepository(Groups)
     private groupRepo: Repository<Groups>,
+    @InjectRepository(User)
+    private usersRepo: Repository<User>,
   ) {}
 
   async listAllGroupsService() {
@@ -17,8 +19,15 @@ export class GroupsService {
   }
 
   async createGroupService(body: Groups, id: number, res: Response): Promise<any | string> {
-    console.log(id);
+    const user: User = await this.usersRepo.findOne(id)
+
+    if(user.groups_create_mount === 3) {
+      return res.status(400).json({error: {
+        error: "Limite de grupos atingidos"
+      }})
+    } 
     const verify = await this.groupRepo.findOne({ name: body.name });
+
     if (verify) {
       return res.status(400).json({
         error:{
@@ -32,6 +41,9 @@ export class GroupsService {
     body.user_creator_id = id;
     const group = this.groupRepo.create(body);
     const { password, ...groupSaved } = await this.groupRepo.save(group);
+
+    await this.usersRepo.update({ id }, {groups_create_mount: ++user.groups_create_mount});
+
     return groupSaved;
   }
 
