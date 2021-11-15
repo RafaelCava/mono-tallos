@@ -26,6 +26,7 @@
   "exclude": [
     ".docker",
     "node_modules",
-    "dist"
+    "dist",
+    "cache"
   ]
 }

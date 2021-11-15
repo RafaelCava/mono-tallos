@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../../models/user.model';
 import { Repository } from 'typeorm';
 import { hash } from 'bcrypt';
+import { Response } from 'express';
 
 @Injectable()
 export class UserService {
@@ -16,10 +17,12 @@ export class UserService {
     return user;
   }
 
-  async createUserService(body: User): Promise<void | string> {
+  async createUserService(body: User, res: Response): Promise<void | Response> {
     const verify = await this.userRepo.findOne({ email: body.email });
     if (verify) {
-      return 'Email em uso';
+      return res.status(400).json({error: {
+        error: 'Email em uso'
+      }});
     }
     body.senha = await hash(body.senha, 11);
     const usuario = this.userRepo.create(body);

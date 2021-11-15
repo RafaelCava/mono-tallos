@@ -12,3 +12,9 @@ export interface Message {
   name: string
   message: string
 }
+
+export interface reponseLogin extends Response {
+  token: string
+  userId: string
+  userName: string
+}
