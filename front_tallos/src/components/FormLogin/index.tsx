@@ -43,7 +43,7 @@ const FormLogin = () => {
       setUserNameLocal(response.userName);
       toGroups();
     } else {
-      alert('Usuario ou senha inválidos');
+      alert(response.error.error);
     }
   };
 
