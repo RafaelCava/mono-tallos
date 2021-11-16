@@ -53,6 +53,7 @@ const useHookProvider = () => {
 
     if (statusCode !== 201) {
       alert(data.error.error);
+      return;
     }
 
     setInputValueCadastrarEmail('');

@@ -35,6 +35,6 @@ export class AuthServices {
     const token = sign({ userFormated }, new SecureToken().secret(), {
       expiresIn: '8h',
     });
-    return { token, userName: user.name, userId: user.id };
+    return res.status(200).json({ token, userName: user.name, userId: user.id });
   }
 }

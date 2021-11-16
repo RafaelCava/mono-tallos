@@ -59,6 +59,8 @@ a {
 }
 
 @media screen and (max-width: 1000px) {
-  form-width: 100vw;
+  form {
+    width: 100vw;
+  }
 }
 /*# sourceMappingURL=styles.css.map */
