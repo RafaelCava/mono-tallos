@@ -1,3 +1,4 @@
+
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Response } from 'express';
@@ -36,6 +37,8 @@ export class MessageService {
       message,
     });
 
-    return await this.messageRepo.save(messageCreated);
+    const messageSaved = await this.messageRepo.save(messageCreated);
+
+    return res.status(201).json(messageSaved)
   }
 }
