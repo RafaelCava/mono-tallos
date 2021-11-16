@@ -1,6 +1,6 @@
 # Projeto Full-Stack - Tallos
 
-# Tecnologias
+## Tecnologias
  - Nest.js
  - React.js
  - Node.js
@@ -11,3 +11,9 @@
  - Jest
  - Bcrypt
  - Swagger
+
+## Start Application
+ - Entre dentro de cada pasta e rode o comando:
+```bash
+docker-compose up -d
+```
