@@ -44,7 +44,7 @@ export class GroupsService {
 
     await this.usersRepo.update({ id }, {groups_create_mount: ++user.groups_create_mount});
 
-    return groupSaved;
+    return res.status(201).json(groupSaved);
   }
 
   async deleteGroup(id: string, userId: number, res: Response): Promise<any | string> {
