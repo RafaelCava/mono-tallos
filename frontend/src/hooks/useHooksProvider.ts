@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return */
 import { MutableRefObject, useRef, useState } from 'react';
 import { useLocalStorage } from 'react-use';
+import { toast, ToastContainer } from 'react-toastify';
 import { GroupsModel, reponseLogin } from '../interfaces/interfaces';
 
 const useHookProvider = () => {
@@ -32,6 +33,17 @@ const useHookProvider = () => {
     setFormActive(!formActive);
   };
 
+  const handleNotifyPromise = async (promise: Promise<any>): Promise<void> => {
+    toast.promise(
+      promise,
+      {
+        pending: 'Criando...',
+        success: 'Criado 👌',
+        error: 'Error 🤯'
+      }
+    );
+  };
+
   const handleFormCadastrar = async (e: any): Promise<void> => {
     e.preventDefault();
     const requestOptions = {
@@ -45,22 +57,24 @@ const useHookProvider = () => {
         senha: inputValueCadastrarSenha
       })
     };
-    const response = await fetch('http://localhost:3000/users', requestOptions);
+    const response = fetch('http://localhost:3000/users', requestOptions);
 
-    const statusCode = response.status;
+    handleNotifyPromise(response);
 
-    const data = await response.json();
+    let statusCode = 0;
 
-    if (statusCode !== 201) {
-      alert(data.error.error);
-      return;
-    }
-
-    setInputValueCadastrarEmail('');
-    setInputValueCadastrarName('');
-    setInputValueCadastrarSenha('');
-    alert(data.mensagem.mensagem);
-    handleFormSetLogin();
+    response.then((val) => {
+      statusCode = val.status;
+      return val.json();
+    }).then((data) => {
+      if (statusCode !== 201) {
+        return;
+      }
+      setInputValueCadastrarEmail('');
+      setInputValueCadastrarName('');
+      setInputValueCadastrarSenha('');
+      handleFormSetLogin();
+    });
   };
 
   return {
@@ -91,7 +105,9 @@ const useHookProvider = () => {
     removeUserNameLocal,
     userIdLocal,
     setUserIdLocal,
-    removeUserIdLocal
+    removeUserIdLocal,
+    handleNotifyPromise,
+    ToastContainer
   };
 };
 
