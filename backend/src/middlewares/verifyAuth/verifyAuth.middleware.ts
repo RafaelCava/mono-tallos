@@ -8,6 +8,7 @@ export function VerifyAuthMiddleware(
   next: NextFunction,
 ) {
   if (!req.headers.authorization) {
+    console.log(req.headers);
     return res.status(400).json('not Authorify');
   }
 
