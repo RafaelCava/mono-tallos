@@ -15,7 +15,7 @@ const GroupsList = () => {
   } = useHooks();
 
   useEffect(() => {
-    axios.get('http://localhost:3000/groups', {
+    axios.get('http://18.191.227.58:3000/groups', {
       headers: {
         Authorization: token,
       },
