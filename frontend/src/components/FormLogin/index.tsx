@@ -29,7 +29,7 @@ const FormLogin = () => {
       }),
     };
 
-    const data = await fetch('http://localhost:3000/login', requestOptions);
+    const data = await fetch('http://18.191.227.58:3000/login', requestOptions);
 
     const toGroups = (): void => {
       history.push('/groups');
