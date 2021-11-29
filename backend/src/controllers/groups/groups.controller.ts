@@ -7,7 +7,9 @@ import {
   HttpCode,
   Param,
   Post,
+  Response,
 } from '@nestjs/common';
+import { Response as ResponseExpress } from 'express';
 import { Groups } from 'src/models/groups.model';
 import { GroupsService } from 'src/services/groupsServices/groups.service';
 import { userHeader } from '../user/user.controller';
@@ -22,16 +24,17 @@ export class GroupsController {
   }
 
   @Post()
-  async store(@Body() body: Groups, @Headers('user') user: userHeader) {
+  async store(@Body() body: Groups, @Headers('user') user: userHeader, @Response() res: ResponseExpress) {
     return await this.groupsService.createGroupService(
       body,
       user.userFormated.id,
+      res
     );
   }
 
   @Delete(':id')
   @HttpCode(204)
-  async remove(@Param('id') id: string, @Headers('user') user: userHeader) {
-    return await this.groupsService.deleteGroup(id, user.userFormated.id);
+  async remove(@Param('id') id: string, @Headers('user') user: userHeader, @Response() res: ResponseExpress) {
+    return await this.groupsService.deleteGroup(id, user.userFormated.id, res);
   }
 }

@@ -17,4 +17,7 @@ export interface reponseLogin extends Response {
   token: string
   userId: string
   userName: string
+  error: {
+    error : string
+  }
 }

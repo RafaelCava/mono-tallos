@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return */
 import { MutableRefObject, useRef, useState } from 'react';
 import { useLocalStorage } from 'react-use';
+import { toast, ToastContainer } from 'react-toastify';
 import { GroupsModel, reponseLogin } from '../interfaces/interfaces';
 
 const useHookProvider = () => {
@@ -32,7 +33,18 @@ const useHookProvider = () => {
     setFormActive(!formActive);
   };
 
-  const handleFormCadastrar = async (e: any): Promise<void | boolean> => {
+  const handleNotifyPromise = async (promise: Promise<any>): Promise<void> => {
+    toast.promise(
+      promise,
+      {
+        pending: 'Criando...',
+        success: 'Criado 👌',
+        error: 'Error 🤯'
+      }
+    );
+  };
+
+  const handleFormCadastrar = async (e: any): Promise<void> => {
     e.preventDefault();
     const requestOptions = {
       method: 'POST',
@@ -45,36 +57,24 @@ const useHookProvider = () => {
         senha: inputValueCadastrarSenha
       })
     };
-    const response = await fetch('http://localhost:3000/users', requestOptions);
+    const response = fetch('http://localhost:3000/users', requestOptions);
 
-    const data = await response.json();
+    handleNotifyPromise(response);
 
-    if (!data.error.error) {
-      console.log('pulo do macaco');
-    }
-    alert(data.error.error);
-  };
+    let statusCode = 0;
 
-  const cleanInput = async (e: any): Promise<void> => {
-    handleFormCadastrar(e);
-
-    setInputValueCadastrarEmail('');
-
-    setInputValueCadastrarName('');
-
-    setInputValueCadastrarSenha('');
-  };
-
-  const clean = () => {
-    alert('usuario cadastrado com sucesso');
-
-    setInputValueCadastrarEmail('');
-
-    setInputValueCadastrarName('');
-
-    setInputValueCadastrarSenha('');
-
-    setFormActive(!formActive);
+    response.then((val) => {
+      statusCode = val.status;
+      return val.json();
+    }).then((data) => {
+      if (statusCode !== 201) {
+        return;
+      }
+      setInputValueCadastrarEmail('');
+      setInputValueCadastrarName('');
+      setInputValueCadastrarSenha('');
+      handleFormSetLogin();
+    });
   };
 
   return {
@@ -97,8 +97,7 @@ const useHookProvider = () => {
     removeToken,
     handleFormCadastrar,
     handleFormSetLogin,
-    cleanInput,
-    inputRef: inputRefGroups,
+    inputRefGroups,
     groups,
     setGroups,
     userNameLocal,
@@ -106,7 +105,9 @@ const useHookProvider = () => {
     removeUserNameLocal,
     userIdLocal,
     setUserIdLocal,
-    removeUserIdLocal
+    removeUserIdLocal,
+    handleNotifyPromise,
+    ToastContainer
   };
 };
 

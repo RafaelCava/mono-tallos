@@ -5,7 +5,7 @@ import '../FormLogin/styles.css';
 const FormCadastrar = () => {
   const {
     handleFormSetLogin,
-    cleanInput,
+    handleFormCadastrar,
     setInputValueCadastrarName,
     setInputValueCadastrarEmail,
     setInputValueCadastrarSenha,
@@ -14,12 +14,12 @@ const FormCadastrar = () => {
     inputValueCadastrarSenha,
   } = useHooks();
   return (
-    <form>
+    <form onSubmit={(e) => handleFormCadastrar(e)}>
       <h1>Cadastro</h1>
       <input type="text" placeholder="Insira seu Nome:" onChange={(e) => setInputValueCadastrarName(e.target.value)} value={inputValueCadastrarName} />
       <input type="email" placeholder="Insira seu E-mail:" onChange={(e) => setInputValueCadastrarEmail(e.target.value)} value={inputValueCadastrarEmail} />
       <input type="password" placeholder="Insira sua Senha:" onChange={(e) => setInputValueCadastrarSenha(e.target.value)} value={inputValueCadastrarSenha} />
-      <button onClick={(e) => cleanInput(e)}>Cadastrar</button>
+      <button>Cadastrar</button>
       <a onClick={handleFormSetLogin}>Voltar</a>
     </form>
   );
