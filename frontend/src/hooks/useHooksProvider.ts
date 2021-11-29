@@ -57,7 +57,7 @@ const useHookProvider = () => {
         senha: inputValueCadastrarSenha
       })
     };
-    const response = fetch('http://localhost:3000/users', requestOptions);
+    const response = fetch('http://18.191.227.58:3000/users', requestOptions);
 
     handleNotifyPromise(response);
 
