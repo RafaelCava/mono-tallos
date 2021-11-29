@@ -19,7 +19,7 @@ const Chat = (props: PropsChat) => {
     };
   }, [location]);
 
-  const socket = useMemo<Socket>(() => io('http://localhost:3000', { transports: ['websocket'], query: { name: queryParams.name, group_id: queryParams.group_id } }), [queryParams]);
+  const socket = useMemo<Socket>(() => io('http://18.191.227.58:3000', { transports: ['websocket'], query: { name: queryParams.name, group_id: queryParams.group_id } }), [queryParams]);
 
   useEffect(() => {
     socket.on('connect', () => {
