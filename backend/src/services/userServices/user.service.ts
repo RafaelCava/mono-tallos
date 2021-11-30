@@ -27,7 +27,7 @@ export class UserService {
     body.senha = await hash(body.senha, 11);
     const usuario = this.userRepo.create(body);
     await this.userRepo.save(usuario);
-    return res.status(201).json({mensagem: {
+    return res.status(201).json({sucesso: {
       mensagem: "usuário criado com sucesso!!"
     }});
   }

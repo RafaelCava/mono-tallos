@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import useHooks from '../../hooks/useHooks';
+import './styles.css';
 
 const GroupsList = () => {
   const {
@@ -28,18 +29,14 @@ const GroupsList = () => {
   };
 
   return (
-    <div>
+    <div className="containerGroups">
       <h1>
         Bem vindo(a) Sr(a).
         {userNameLocal}
       </h1>
-      <p>
-        <label htmlFor="name">Name:</label>
-        <input type="text" id="name" ref={inputRefGroups} />
-      </p>
-      <ul>
+      <ul className="containerList">
         {groups.map((group: any, key: any) => (
-          <li onClick={() => toChat(group.id, group.name)} key={key}>
+          <li className="box" onClick={() => toChat(group.id, group.name)} key={key}>
             {group.name}
           </li>
         ))}
