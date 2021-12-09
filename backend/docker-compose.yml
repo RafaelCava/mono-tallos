@@ -3,13 +3,15 @@ version: '3'
 services:
 
   app:
-    build: .
+    image: rafaelcaval1/node:0.0.1
     entrypoint: sh ./.docker/entrypoint.sh
     container_name: nest-api
     ports:
       - 3000:3000
     volumes:
       - .:/home/node/app
+    networks:
+      - network-chat-tallos
 
   db:
     build: .docker/postgres
@@ -24,6 +26,8 @@ services:
       - ./.docker/postgres/dbdata:/var/lib/postgresql/data
     depends_on:
       - app
+    networks:
+      - network-chat-tallos
 
   pgadmin:
     image: dpage/pgadmin4
@@ -35,3 +39,8 @@ services:
       - "9000:80"
     depends_on:
       - db
+    networks:
+      - network-chat-tallos
+networks:
+  network-chat-tallos:
+    driver: bridge
